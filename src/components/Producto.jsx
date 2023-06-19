@@ -1,7 +1,7 @@
 function Producto({ producto, setProducto, eliminarProducto }) {
   // console.log(paciente);
   const handleEliminar = () => {
-    const respuesta = confirm('¿Desea Eliminar el Paciente?');
+    const respuesta = confirm('¿Desea Eliminar el Producto?');
 
     if (respuesta) {
       eliminarProducto(producto.id);
