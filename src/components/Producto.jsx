@@ -1,3 +1,14 @@
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
 function Producto({ producto, setProducto, eliminarProducto }) {
   // console.log(paciente);
   const handleEliminar = () => {
@@ -8,53 +19,55 @@ function Producto({ producto, setProducto, eliminarProducto }) {
     }
   };
   return (
-    <div className=' bg-Web-Orange px-5 py-5 rounded-xl shadow-xl mt-2 border-2 border-Cedar ml-5'>
-      <p className=' font-bold text-Cedar block'>
-        Categoría:
-        <span className='font-normal text-white'> {producto.categoria}</span>
-      </p>
-      <p className=' font-bold text-Cedar block'>
-        Nombre:
-        <span className='font-normal text-white'> {producto.nombre}</span>
-      </p>
-      <p className=' font-bold text-Cedar block'>
-        Stok:
-        <span className='font-normal text-white'> {producto.stok}</span>
-      </p>
-      <p className=' font-bold text-Cedar block'>
-        Marca:<span className='font-normal text-white'> {producto.marca}</span>
-      </p>
-      <p className=' font-bold text-Cedar block'>
-        Precio:
-        <span className='font-normal text-white'>S/. {producto.precio}.00</span>
-      </p>
-
-      <img
-        src={producto.imagen}
-        alt='Producto'
-        className='w-40 h-40 object-cover rounded-md mt-4 relative float-right -top-32'
-      />
-
-      <p className=' font-bold text-Cedar block'>
-        Descripción:
-        <span className='font-normal text-white'> {producto.descripcion}</span>
-      </p>
-      <div>
-        <button
-          type='button'
-          className='px-10 py-2 bg-Flamingo hover:bg-Cedar text-white rounded-xl mt-2 mx-3'
-          onClick={() => setProducto(producto)}
-        >
-          Editar
-        </button>
-        <button
-          type='button'
-          className='px-10 py-2 bg-red-600 hover:bg-red-800 text-white rounded-xl'
-          onClick={handleEliminar}
-        >
-          Eliminar
-        </button>
-      </div>
+    <div className='flex flex-col justify-center items-center mt-5'>
+      <Card sx={{ width: '50%' }}>
+        <CardMedia
+          sx={{ height: 140 }}
+          image={producto.imagen}
+          title='Producto'
+        />
+        <CardContent>
+          <Typography gutterBottom variant='h5' component='div'>
+            CATEGORÍA: {producto.categoria}
+          </Typography>
+          <Typography variant='body2' color='text.secondary'>
+            <b>NOMBRE: </b>
+            {producto.nombre}
+          </Typography>
+          <Typography variant='body2' color='text.secondary'>
+            <b>STOK: </b> {producto.stok}
+          </Typography>
+          <Typography variant='body2' color='text.secondary'>
+            <b>MARCA: </b> {producto.marca}
+          </Typography>
+          <Typography variant='body2' color='text.secondary'>
+            <b>PRECIO:</b> S/.{producto.precio}.00
+          </Typography>
+          <Typography variant='body2' color='text.secondary'>
+            <b>DESCRIPCIÓN:</b> {producto.descripcion}
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button
+            size='large'
+            onClick={() => setProducto(producto)}
+            variant='outlined'
+            color='success'
+            startIcon={<EditIcon />}
+          >
+            Editar
+          </Button>
+          <Button
+            size='large'
+            onClick={handleEliminar}
+            variant='outlined'
+            color='error'
+            startIcon={<DeleteIcon />}
+          >
+            Borrar
+          </Button>
+        </CardActions>
+      </Card>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Error from './Error';
+import { TextField, ThemeProvider, createTheme } from '@mui/material';
 
 const CargarProductos = ({
   productos,
@@ -72,6 +73,17 @@ const CargarProductos = ({
     return fecha + aleatorio;
   };
 
+  const theme = createTheme({
+    palette: {
+      marron: {
+        main: '#7d4a0c',
+      },
+      transparente: {
+        main: 'transparent',
+      },
+    },
+  });
+
   return (
     <div className='md:w-1/2 lg:w-2/5'>
       <h2 className=' font-black text-2xl text-center text-Cafe-Royale'>
@@ -82,111 +94,92 @@ const CargarProductos = ({
       </p>
 
       <form
-        className=' bg-Cedar px-5 py-5 rounded-xl shadow-xl mt-2'
+        className='px-5 py-5 rounded-xl shadow-2xl mt-2'
         onSubmit={handlerSubmit}
       >
         {error && <Error texto='Todos los campos son obligatorios' />}
-        <div className='mb-3'>
-          <label
-            htmlFor='categoria'
-            className=' font-bold text-white block pb-4'
-          >
-            Categoría del Producto:
-          </label>
-          <input
+        <ThemeProvider theme={theme}>
+          <TextField
             id='categoria'
-            type='text'
-            className='w-full border-2 p-2 rounded-lg placeholder-Ripe-Limon outline-none'
-            placeholder='Categoría del Producto'
-            value={categoria}
+            label='Categoria'
+            variant='outlined'
+            fullWidth
+            margin='normal'
             onChange={(e) => setCategoria(e.target.value)}
+            value={categoria}
+            color='marron'
           />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='nombre' className=' font-bold text-white block pb-4'>
-            Nombre del Producto:
-          </label>
-          <input
+          <TextField
             id='nombre'
-            type='text'
-            className='w-full border-2 p-2 rounded-lg placeholder-Ripe-Limon outline-none'
-            placeholder='Nombre del producto'
-            value={nombre}
+            label='Nombre'
+            variant='outlined'
+            fullWidth
+            margin='normal'
             onChange={(e) => setNombre(e.target.value)}
+            value={nombre}
+            color='marron'
           />
-        </div>
-
-        <div className='mb-3'>
-          <label htmlFor='stok' className=' font-bold text-white block pb-4'>
-            Stok:
-          </label>
-          <input
+          <TextField
             id='stok'
-            type='number'
-            className='w-full border-2 p-2 rounded-lg placeholder-Ripe-Limon outline-none'
-            placeholder='Stok del Producto'
-            value={stok}
+            label='Stok'
+            variant='outlined'
+            fullWidth
+            margin='normal'
             onChange={(e) => setStok(e.target.value)}
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='marca' className=' font-bold text-white block pb-4'>
-            Marca del Producto:
-          </label>
-          <input
-            id='marca'
-            type='text'
-            className='w-full border-2 p-2 rounded-lg placeholder-Ripe-Limon outline-none'
-            placeholder='Marca del Producto'
-            value={marca}
-            onChange={(e) => setMarca(e.target.value)}
-          />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='precio' className=' font-bold text-white block pb-4'>
-            Precio del Producto:
-          </label>
-          <input
-            id='precio'
+            value={stok}
             type='number'
-            className='w-full border-2 p-2 rounded-lg placeholder-Ripe-Limon outline-none'
-            placeholder='Precio del Producto'
-            value={precio}
+            color='marron'
+          />
+          <TextField
+            id='marca'
+            label='Marca'
+            variant='outlined'
+            fullWidth
+            margin='normal'
+            onChange={(e) => setMarca(e.target.value)}
+            value={marca}
+            color='marron'
+          />
+          <TextField
+            id='precio'
+            label='Precio'
+            variant='outlined'
+            fullWidth
+            margin='normal'
             onChange={(e) => setPrecio(e.target.value)}
+            value={precio}
+            color='marron'
+            type='number'
           />
-        </div>
-        <div className='mb-3'>
-          <label htmlFor='imagen' className='font-bold text-white block pb-4'>
-            Imagen del Producto:
-          </label>
-          <input
+          <TextField
             id='imagen'
-            type='file'
-            className='outline-none'
+            variant='outlined'
+            fullWidth
+            margin='normal'
             onChange={(e) => setImagen(e.target.files[0])}
+            type='file'
+            color='marron'
           />
-        </div>
 
-        <div className='mb-3'>
-          <label
-            htmlFor='descripcion'
-            className=' font-bold text-white block pb-4'
-          >
-            Descripción del Producto:
-          </label>
-          <textarea
+          <TextField
             id='descripcion'
-            className='w-full border-2 p-2 rounded-lg placeholder-Ripe-Limon outline-none'
-            placeholder='Ingrese la descripción del Producto'
-            value={descripcion}
+            variant='outlined'
+            fullWidth
+            margin='normal'
             onChange={(e) => setDescripcion(e.target.value)}
+            value={descripcion}
+            label='Descripción del Producto'
+            multiline
+            color='marron'
           />
-        </div>
-        <input
-          type='submit'
-          value={producto.id ? 'Guardar Producto' : 'Agregar Producto'}
-          className=' bg-Ripe-Limon p-3 w-full text-Cafe-Royale font-black hover:bg-Flamingo hover:text-white transition-colors rounded-xl'
-        />
+
+          <TextField
+            type='submit'
+            value={producto.id ? 'Guardar Producto' : 'Agregar Producto'}
+            className='bg-Ripe-Limon w-full text-white hover:bg-Flamingo'
+            color='transparente'
+          />
+        </ThemeProvider>
       </form>
     </div>
   );
