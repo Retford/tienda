@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Error from './Error';
-import Producto from './Producto';
 
 const CargarProductos = ({
   productos,
@@ -48,8 +47,8 @@ const CargarProductos = ({
     if (producto.id) {
       //MODO EDITAR
       objetoProducto.id = producto.id;
-      const productosActualizados = productos.map((producto) =>
-        producto.id === producto.id ? objetoProducto : producto
+      const productosActualizados = productos.map((productoState) =>
+        productoState.id === producto.id ? objetoProducto : productoState
       );
       setProductos(productosActualizados);
       setProducto({});
@@ -178,7 +177,7 @@ const CargarProductos = ({
           <textarea
             id='descripcion'
             className='w-full border-2 p-2 rounded-lg placeholder-Ripe-Limon outline-none'
-            placeholder='Ingrese los síntomas'
+            placeholder='Ingrese la descripción del Producto'
             value={descripcion}
             onChange={(e) => setDescripcion(e.target.value)}
           />
